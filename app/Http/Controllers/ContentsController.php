@@ -44,6 +44,10 @@ class ContentsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'caption' => 'required|max:191',
+            ]);
+        
         $content = new Content;
         $content->caption = $request->caption;
         $content->save();
@@ -90,6 +94,10 @@ class ContentsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'caption' => 'required|max:191',
+            ]);
+        
         $content = Content::find($id);
         $content->caption = $request->caption;
         $content->save();

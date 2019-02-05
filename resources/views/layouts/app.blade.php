@@ -7,6 +7,7 @@
 
     <body>
         <h1>instagram-clone</h1>
+        @include('commons.error_messages')
         @yield('content')
     </body>
 </html>
