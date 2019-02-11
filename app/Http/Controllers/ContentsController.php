@@ -46,9 +46,12 @@ class ContentsController extends Controller
     {
         $this->validate($request,[
             'caption' => 'required|max:191',
+            'toShareImg' => 'required|file|image',
             ]);
         
         $content = new Content;
+        $content->toShareImg = $request->toShareImg;
+        $request->toShareImg->store('public/contents');
         $content->caption = $request->caption;
         $content->save();
         
