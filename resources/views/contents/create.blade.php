@@ -3,8 +3,7 @@
 @section('content')
 
     <h1>Share the images</h1>
-    {!! Form::open(['url' => '/contents', 'method' => 'post', 'files' => true]) !!}
-    {!! Form::model($content,['route' => 'contents.store', $content->toShareImg ]) !!}
+    {!! Form::model($content,['route' => 'contents.store', $content->toShareImg ,'files' => true]) !!}
     
         {!! Form::label('toShareImg','Image')!!}
         {!! Form::file('toShareImg') !!}

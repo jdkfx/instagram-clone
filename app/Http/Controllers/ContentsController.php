@@ -50,8 +50,8 @@ class ContentsController extends Controller
             ]);
         
         $content = new Content;
-        $content->toShareImg = $request->toShareImg;
-        $request->toShareImg->store('public/contents');
+        $path = $request->toShareImg->store('contents');
+        $content->toShareImg = $path;
         $content->caption = $request->caption;
         $content->save();
         

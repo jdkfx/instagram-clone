@@ -16,7 +16,7 @@
     @if(count($contents) > 0)
         <ul>
             @foreach ($contents as $content)
-                <li>{!! link_to_route('contents.show', $content->id, ['id' => $content->id]) !!} : {{$content->caption}}</li>
+                <li>{!! link_to_route('contents.show', $content->id, ['id' => $content->id]) !!} :<img src="/storage/{{ $content->toShareImg }}" alt=""> {{$content->caption}}</li>
             @endforeach
         </ul>
     @endif

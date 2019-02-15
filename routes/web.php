@@ -21,3 +21,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::resource('contents','ContentsController');
+
+// Route::get('contents','ContentsController@create');
+// Route::post('contents','ContentsController@store');
+// Route::get('contents/{id}','ContentsController@show');
