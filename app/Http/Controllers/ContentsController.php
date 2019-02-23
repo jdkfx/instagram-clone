@@ -15,11 +15,15 @@ class ContentsController extends Controller
      */
     public function index()
     {
-        $contents = Content::all();
-        
-        return view('contents.index',[
-            'contents' => $contents,
-            ]);
+        if (\Auth::check()){
+            $contents = Content::all();
+            
+            return view('contents.index',[
+                'contents' => $contents,
+                ]);    
+        } else {
+            return view('welcome');
+        }
     }
 
     /**
