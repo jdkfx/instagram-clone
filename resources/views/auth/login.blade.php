@@ -5,16 +5,16 @@
     <h1>Log in</h1>
     {!! Form::open(['route' => 'login.post']) !!}
     
-        {!! Form::label('email', 'Email') !!}
+        {!! Form::label('email', 'メールアドレス') !!}
         {!! Form::email('email', old('email')) !!}
         <br>
-        {!! Form::label('password', 'Password') !!}
+        {!! Form::label('password', 'パスワード') !!}
         {!! Form::password('password') !!}
         <br>
-        {!! Form::submit('Log in') !!}
+        {!! Form::submit('ログイン') !!}
         
     {!! Form::close() !!}
     
-    <p>New user? {!! link_to_route('signup.get', 'Sign up now!') !!}</p>
+    <p>新規登録はこちら{!! link_to_route('signup.get', '登録する') !!}</p>
     
 @endsection

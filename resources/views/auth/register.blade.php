@@ -6,19 +6,19 @@
 
     {!! Form::open(['route'=>'signup.post']) !!}
     
-        {!! Form::label('name', 'Name') !!}
+        {!! Form::label('name', '名前') !!}
         {!! Form::text('name', old('name')) !!}
         <br>
-        {!! Form::label('email', 'Email') !!}
+        {!! Form::label('email', 'メールアドレス') !!}
         {!! Form::email('email', old('email')) !!}
         <br>
-        {!! Form::label('password', 'Password') !!}
+        {!! Form::label('password', 'パスワード') !!}
         {!! Form::password('password') !!}
         <br>
-        {!! Form::label('password_confirmation', 'Password confirmation') !!}
+        {!! Form::label('password_confirmation', 'パスワード確認') !!}
         {!! Form::password('password_confirmation') !!}
         <br>
-        {!! Form::submit('Sign up') !!}
+        {!! Form::submit('登録') !!}
         
     {!! Form::close() !!}
 

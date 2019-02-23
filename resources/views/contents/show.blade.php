@@ -4,14 +4,13 @@
 
     <h1>Detail of {{ $content->id }}</h1>
     
-    <p>{{ $content->toShareImg }}</p>
-    <img src="/storage/{{ $content->toShareImg }}" alt="">
+    <img src="/storage/{{ $content->toShareImg }}" alt="" width="400px">
     <p>{{ $content->caption }}</p>
     
     {!! link_to_route('contents.edit','Edit',['id' => $content->id]) !!}
     
     {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete' ]) !!}
-        {!! Form::submit('Delete') !!}
+        {!! Form::submit('画像を削除する') !!}
     {!! Form::close() !!}
 
 @endsection

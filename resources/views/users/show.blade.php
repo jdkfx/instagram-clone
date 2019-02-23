@@ -3,6 +3,6 @@
 @section('content')
 
     <h3>{{ $user->name }}</h3>
-    {!! link_to_route('logout.get','Log out') !!}
+    {!! link_to_route('logout.get','ログアウト') !!}
 
 @endsection

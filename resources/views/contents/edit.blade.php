@@ -6,7 +6,10 @@
     
     {!! Form::model($content, ['route' => ['contents.update',$content->id], 'method' => 'put']) !!}
         
-        {!! Form::label('caption','Edit the caption') !!}
+        {!! Form::label('toShareImg','画像を変更する')!!}
+        {!! Form::file('toShareImg') !!}
+        
+        {!! Form::label('caption','説明を変更する') !!}
         {!! Form::text('caption') !!}
         
         {!! Form::submit('update') !!}
