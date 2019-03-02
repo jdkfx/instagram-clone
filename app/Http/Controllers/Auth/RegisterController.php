@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use App\Userdetail;
+
 class RegisterController extends Controller
 {
     /*
@@ -66,6 +68,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+        ]);
+        
+        return Userdetail::create([
+            'profileText' => null,
+            'profileImg' => null,
         ]);
     }
 }

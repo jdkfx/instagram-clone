@@ -28,6 +28,6 @@ Route::resource('contents','ContentsController');
 //ログインユーザーのみ画像のシェア、削除ができる
 //ログインユーザーは自身のプロフィールを確認できる
 Route::group(['middleware'=> ['auth']], function(){
-    Route::resource('users','UsersController',['only'=> ['show']]);
+    Route::resource('users','UsersController');
     Route::resource('contents','ContentsController',['only' => ['store','destroy',]]);
 });
