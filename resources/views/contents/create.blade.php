@@ -11,7 +11,7 @@
         {!! Form::label('caption','説明を記入してください') !!}
         {!! Form::text('caption') !!}
         
-        {!! Form::submit('share') !!}
+        {!! Form::submit('投稿') !!}
         
     {!! Form::close() !!}
 

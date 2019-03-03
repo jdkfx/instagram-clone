@@ -30,4 +30,5 @@ Route::resource('contents','ContentsController');
 Route::group(['middleware'=> ['auth']], function(){
     Route::resource('users','UsersController');
     Route::resource('contents','ContentsController',['only' => ['store','destroy',]]);
+    Route::resource('comments','CommentsController');
 });

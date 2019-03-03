@@ -22,11 +22,11 @@ class UsersController extends Controller
     //     $userdetail->profileText = null;
     //     $path = $request->profileImg->store('userdetails');
     //     $userdetail->profileImg = $path;
-    //     $userdetail->profileText = $request->profileText;
-    //     $userdetail->save();
+    //      $userdetail->profileText = $request->profileText;
+    //      $userdetail->save();
         
-    //     return redirect('/');
-    // }
+    //      return redirect('/');
+    //  }
     
     public function show($id)
     {
