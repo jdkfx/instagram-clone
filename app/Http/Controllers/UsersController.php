@@ -55,6 +55,8 @@ class UsersController extends Controller
             ]);
             
         $user = User::find($id);
+        $userdetail = new Userdetail;
+        $userdetail->user_id = $user->id;
         $path = $request->profileImg->store('userdetails');
         $userdetail->profileImg = $path;
         $userdetail->profileText = $request->profileText;
