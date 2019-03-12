@@ -1,18 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <h1>Share the images</h1>
-    {!! Form::model($content,['route' => 'contents.store', $content->toShareImg ,'files' => true]) !!}
     
-        {!! Form::label('toShareImg','画像をアップロードする')!!}
-        {!! Form::file('toShareImg') !!}
+    <div class="text-center">
+        <h1>画像を投稿する</h1>
+    </div>
     
-        {!! Form::label('caption','説明を記入してください') !!}
-        {!! Form::text('caption') !!}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
         
-        {!! Form::submit('投稿') !!}
+            {!! Form::model($content,['route' => 'contents.store', $content->toShareImg ,'files' => true]) !!}
+                
+                <div class="form-group">
+                    {!! Form::label('toShareImg','画像を選択')!!}
+                    {!! Form::file('toShareImg') !!}
+                </div>
+            
+                <div class="form-group">
+                    {!! Form::label('caption','説明を記入してください') !!}
+                    {!! Form::textarea('caption',null,['class' => 'form-control']) !!}
+                </div>
+                
+                {!! Form::submit('投稿') !!}
+                
+            {!! Form::close() !!}
         
-    {!! Form::close() !!}
+        </div>
+    </div>
 
 @endsection

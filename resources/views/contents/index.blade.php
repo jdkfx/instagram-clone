@@ -2,19 +2,34 @@
 
 @section('content')
 
-    <?php $user = Auth::user(); ?>
     {!! link_to_route('contents.create','画像をアップロードする') !!}
-    @if(count($contents) > 0)
-        @foreach ($contents as $content)
-            <ul>
-                <li>
-                    <!--<div class="well well-lg clearfix col-md-6">-->
-                    {!! link_to_route('contents.show', $content->id, ['id' => $content->id]) !!}<br>
-                    <img src="/storage/{{ $content->toShareImg }}" alt="" width="300px"><br>
-                    {{$user->name}} {{$content->caption}}
-                    <!--</div>-->
-                </li>
-            </ul>
+    <ul>
+        
+        @foreach($contents as $content)
+        
+        <?php $user = $content->user; ?>
+        <li>
+            
+            <div>
+                <img src="/storage/{{ $content->toShareImg }}" alt="" width="400px">
+            </div>
+            
+            <div>
+                <p>{!! nl2br(e($user->name)) !!}</p>
+                <p>{!! nl2br(e($content->caption)) !!}</p>
+                <span class="text-muted">posted at {{ $content->created_at }}</span>
+            </div>
+            
+            {!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}
+    
+            {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete' ]) !!}
+                {!! Form::submit('削除') !!}
+            {!! Form::close() !!}
+            
+        </li>
+        
         @endforeach
-    @endif
+        
+    </ul>
+    
 @endsection

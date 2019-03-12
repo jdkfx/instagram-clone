@@ -25,10 +25,10 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 //ルーティング
 Route::resource('contents','ContentsController');
 
-//ログインユーザーのみ画像のシェア、削除ができる
+//ログインユーザーのみ画像のシェア、削除ができる(予定)
 //ログインユーザーは自身のプロフィールを確認できる
 Route::group(['middleware'=> ['auth']], function(){
     Route::resource('users','UsersController');
-    Route::resource('contents','ContentsController',['only' => ['store','destroy',]]);
+    // Route::resource('contents','ContentsController',['only' => ['store','destroy',]]); ←あとで追加
     Route::resource('comments','CommentsController');
 });

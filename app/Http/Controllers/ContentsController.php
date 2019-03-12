@@ -15,12 +15,17 @@ class ContentsController extends Controller
      */
     public function index()
     {
+        $data = [];
         if (\Auth::check()){
-            $contents = Content::all();
+            $user = \Auth::user();
+            $contents = $user->contents()->orderBy('created_at', 'desc')->get();
             
-            return view('contents.index',[
+            $data = [
+                'user' => $user,
                 'contents' => $contents,
-                ]);    
+                ];
+            
+            return view('contents.index',$data);    
         } else {
             return view('welcome');
         }
@@ -55,9 +60,11 @@ class ContentsController extends Controller
         
         $content = new Content;
         $path = $request->toShareImg->store('contents');
-        $content->toShareImg = $path;
-        $content->caption = $request->caption;
-        $content->save();
+        
+        $request->user()->contents()->create([
+            'toShareImg' => $path,
+            'caption' => $request->caption,
+            ]);
         
         return redirect('/');
     }

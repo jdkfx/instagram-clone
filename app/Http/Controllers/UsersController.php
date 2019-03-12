@@ -52,6 +52,7 @@ class UsersController extends Controller
     {
         $this->validate($request,[
             'profileText' => 'required|max:191',
+            'profileImg' => 'required|file|image',
             ]);
             
         $user = User::find($id);

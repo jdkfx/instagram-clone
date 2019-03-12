@@ -16,6 +16,7 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
+            $table->string('toShareImg');
             $table->string('caption');
             $table->timestamps();
             

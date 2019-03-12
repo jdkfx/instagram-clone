@@ -29,7 +29,7 @@ class User extends Authenticatable
     
     public function userdetails()
     {
-        return $this->hasOne('App\userdetail');
+        return $this->hasOne(Userdetail::class);
     }
     
     public function comments()
