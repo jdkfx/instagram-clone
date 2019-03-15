@@ -12,5 +12,25 @@
     {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete' ]) !!}
         {!! Form::submit('削除') !!}
     {!! Form::close() !!}
+    
+    {!! Form::open(['route' => ['comments.store',$content->id]]) !!}
+        
+        {!! Form::label('message','コメントを入力してください') !!}
+        {!! Form::textarea('message',old('message')) !!}
+        
+        {!! Form::submit('コメントする') !!}
+        
+    {!! Form::close() !!}
+    
+    @forelse($content->comments as $comment)
+    
+        {!! $user->name !!}
+        {!! nl2br(e($comment->message)) !!}
+        
+    @empty
+    
+        <p>コメントはまだありません</p>
+    
+    @endforelse
 
 @endsection

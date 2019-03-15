@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    public function user()
+    protected $fillable = ['user_id','content_id','message'];
+    
+    public function content()
     {
-        return $this->belongsTo(User::class);
+        $this->belongsTo(Content::class);
     }
 }

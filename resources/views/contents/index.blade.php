@@ -20,11 +20,13 @@
                 <span class="text-muted">posted at {{ $content->created_at }}</span>
             </div>
             
+            @if(Auth::user()->id == $content->user_id)
             {!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}
     
             {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete' ]) !!}
                 {!! Form::submit('削除') !!}
             {!! Form::close() !!}
+            @endif
             
         </li>
         

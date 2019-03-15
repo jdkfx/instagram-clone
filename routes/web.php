@@ -30,5 +30,5 @@ Route::resource('contents','ContentsController');
 Route::group(['middleware'=> ['auth']], function(){
     Route::resource('users','UsersController');
     // Route::resource('contents','ContentsController',['only' => ['store','destroy',]]); ←あとで追加
-    Route::resource('comments','CommentsController');
+    Route::resource('comments','CommentsController',['only' => ['store']]);
 });

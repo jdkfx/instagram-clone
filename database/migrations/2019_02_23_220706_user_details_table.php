@@ -19,6 +19,7 @@ class UserDetailsTable extends Migration
             $table->string('profileText');
             $table->string('profileImg');
             $table->timestamps();
+            
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
