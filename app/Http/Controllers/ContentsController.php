@@ -58,7 +58,7 @@ class ContentsController extends Controller
             'toShareImg' => 'required|file|image',
             ]);
         
-        $content = new Content;
+        // $content = new Content;
         $path = $request->toShareImg->store('contents');
         
         $request->user()->contents()->create([

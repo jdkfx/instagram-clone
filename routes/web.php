@@ -29,6 +29,6 @@ Route::resource('contents','ContentsController');
 //ログインユーザーは自身のプロフィールを確認できる
 Route::group(['middleware'=> ['auth']], function(){
     Route::resource('users','UsersController');
-    // Route::resource('contents','ContentsController',['only' => ['store','destroy',]]); ←あとで追加
+    // Route::resource('contents','ContentsController',['only' => ['store','destroy',]]); ←メモ：あとでごちゃごちゃ編集するぞ！！
     Route::resource('comments','CommentsController',['only' => ['store']]);
 });

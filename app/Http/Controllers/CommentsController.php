@@ -13,7 +13,6 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'content_id' => 'required',
             'message' => 'required|max:191',
             ]);
             

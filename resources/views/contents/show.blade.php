@@ -14,6 +14,8 @@
     {!! Form::close() !!}
     
     {!! Form::open(['route' => ['comments.store',$content->id]]) !!}
+    
+        {{ Form::hidden('content_id',$content->id) }}
         
         {!! Form::label('message','コメントを入力してください') !!}
         {!! Form::textarea('message',old('message')) !!}
@@ -24,8 +26,10 @@
     
     @forelse($content->comments as $comment)
     
+        <?php $user = $content->user; ?>
         {!! $user->name !!}
         {!! nl2br(e($comment->message)) !!}
+        <br>
         
     @empty
     

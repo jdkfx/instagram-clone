@@ -20,6 +20,8 @@
                 <span class="text-muted">posted at {{ $content->created_at }}</span>
             </div>
             
+            {!! link_to_route('contents.show','詳細を見る',['id' => $content->id]) !!}
+            
             @if(Auth::user()->id == $content->user_id)
             {!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}
     

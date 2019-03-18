@@ -4,7 +4,7 @@
 
     <h1>ユーザー情報の編集</h1>
     
-    {!! Form::model($user, ['route' => ['users.update',$user->id] , 'method' => 'put' , 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::model($user, ['route' => ['users.update',$user->id] , 'method' => 'put' ,'files'=> true]) !!}
         
         {!! Form::label('profileImg','プロフィール画像')!!}
         {!! Form::file('profileImg') !!}

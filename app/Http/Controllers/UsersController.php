@@ -9,25 +9,6 @@ use App\Userdetail;
 
 class UsersController extends Controller
 {
-    
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request,[
-    //         'profileText' => 'required|max:191',
-    //         'profileImg' => 'required|file|image',
-    //         ]);
-        
-    //     $userdetail = new Userdetail;
-    //     $userdetail->profileImg = null;
-    //     $userdetail->profileText = null;
-    //     $path = $request->profileImg->store('userdetails');
-    //     $userdetail->profileImg = $path;
-    //      $userdetail->profileText = $request->profileText;
-    //      $userdetail->save();
-        
-    //      return redirect('/');
-    //  }
-    
     public function show($id)
     {
         $user = User::find($id);
@@ -55,17 +36,24 @@ class UsersController extends Controller
             'profileImg' => 'required|file|image',
             ]);
             
-        $user = User::find($id);
-        $userdetail = new Userdetail;
-        $userdetail->user_id = $user->id;
+        // $user = User::find($id);
+        // $userdetail = new Userdetail;
+        // $userdetail->user_id = $user->id;
+        // $path = $request->profileImg->store('userdetails');
+        // $userdetail->profileImg = $path;
+        // $userdetail->profileText = $request->profileText;
+        // $userdetail->save();
+        
         $path = $request->profileImg->store('userdetails');
-        $userdetail->profileImg = $path;
-        $userdetail->profileText = $request->profileText;
-        $userdetail->save();
+        
+        $request->user()->userdetails()->update([
+            'profileImg' => $path,
+            'profileText' => $request->profileText,
+            ]);
         
         return view('users.show', [
             'user' => $user,
-            'userdetail' => $userdetail,
+            'userdetails' => $userdetails,
         ]);
     }
 }
