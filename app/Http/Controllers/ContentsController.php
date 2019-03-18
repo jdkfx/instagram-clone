@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Content;
+use App\Userdetail;
 
 class ContentsController extends Controller
 {
@@ -18,10 +19,12 @@ class ContentsController extends Controller
         $data = [];
         if (\Auth::check()){
             $user = \Auth::user();
+            $userdetail = Userdetail::find($user->id);
             $contents = $user->contents()->orderBy('created_at', 'desc')->get();
             
             $data = [
                 'user' => $user,
+                'userdetail' => $userdetail,
                 'contents' => $contents,
                 ];
             
@@ -58,7 +61,6 @@ class ContentsController extends Controller
             'toShareImg' => 'required|file|image',
             ]);
         
-        // $content = new Content;
         $path = $request->toShareImg->store('contents');
         
         $request->user()->contents()->create([

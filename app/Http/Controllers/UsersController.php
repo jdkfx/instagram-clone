@@ -12,7 +12,10 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $userdetail = $user;
+        $userdetail = Userdetail::find($user->id);
+        
+        $userdetail->profileText = Userdetail::latest('updated_at')->value('profileText');
+        $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
     
         return view('users.show', [
             'user' => $user,
@@ -36,24 +39,17 @@ class UsersController extends Controller
             'profileImg' => 'required|file|image',
             ]);
             
-        // $user = User::find($id);
-        // $userdetail = new Userdetail;
-        // $userdetail->user_id = $user->id;
-        // $path = $request->profileImg->store('userdetails');
-        // $userdetail->profileImg = $path;
-        // $userdetail->profileText = $request->profileText;
-        // $userdetail->save();
-        
+        $user = User::find($id);
+        $userdetail = new Userdetail;
+        $userdetail->user_id = $user->id;
         $path = $request->profileImg->store('userdetails');
-        
-        $request->user()->userdetails()->update([
-            'profileImg' => $path,
-            'profileText' => $request->profileText,
-            ]);
+        $userdetail->profileImg = $path;
+        $userdetail->profileText = $request->profileText;
+        $userdetail->save();
         
         return view('users.show', [
             'user' => $user,
-            'userdetails' => $userdetails,
+            'userdetail' => $userdetail,
         ]);
     }
 }
