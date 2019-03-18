@@ -14,8 +14,10 @@ class UsersController extends Controller
         $user = User::find($id);
         $userdetail = Userdetail::find($user->id);
         
-        $userdetail->profileText = Userdetail::latest('updated_at')->value('profileText');
-        $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
+        if(isset($userdetail->profileText) && isset($userdetail->profileImg)){
+                    $userdetail->profileText = Userdetail::latest('updated_at')->value('profileText');
+                    $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
+        }
     
         return view('users.show', [
             'user' => $user,
