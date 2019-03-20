@@ -26,11 +26,15 @@ class CommentsController extends Controller
         return redirect()->back();
     }
     
-    public function show($content_id)
-    {
-        $content = Content::find($content_id);
-        $user = User::where('id',$content->user_id)->first();
+    // public function show($id)//コメントとかのバグの原因はここだと思います
+    // {
+    //     $comment = Comment::find($id);
+    //     $content = Content::find($comment->content_id);
+    //     $user = User::find($comment->user_id);
         
-        return view('contents.show',compact('content','user'));
-    }
+    //     return view('contents.show',[
+    //         'content' => $content,
+    //         'user' => $user,
+    //         ]);
+    // }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Userdetail;
+use App\Content;
 
 class UsersController extends Controller
 {
@@ -15,8 +16,10 @@ class UsersController extends Controller
         $userdetail = Userdetail::find($user->id);
         
         if(isset($userdetail->profileText) && isset($userdetail->profileImg)){
-                    $userdetail->profileText = Userdetail::latest('updated_at')->value('profileText');
-                    $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
+            if (\Auth::id() === $user->id) {
+                $userdetail->profileText = Userdetail::latest('updated_at')->value('profileText');
+                $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
+            }
         }
     
         return view('users.show', [
@@ -53,5 +56,35 @@ class UsersController extends Controller
             'user' => $user,
             'userdetail' => $userdetail,
         ]);
+    }
+    
+    public function followings($id)
+    {
+        $user = User::find($id);
+        $followings = $user->followings();
+        
+        $data = [
+            'user' => $user,
+            'users' => $followings,
+            ];
+            
+        $data += $this->counts($user);
+            
+        return view('users.followings',$data);
+    }
+    
+    public function followers($id)
+    {
+        $user = User::find($id);
+        $followers = $user->followers();
+        
+        $data = [
+            'user' => $user,
+            'users' => $followers,
+            ];
+        
+        $data += $this->counts($user);
+        
+        return view('users.followers',$data);
     }
 }

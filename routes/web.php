@@ -22,13 +22,17 @@ Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
-//ルーティング
-Route::resource('contents','ContentsController');
 
 //ログインユーザーのみ画像のシェア、削除ができる(予定)
 //ログインユーザーは自身のプロフィールを確認できる
 Route::group(['middleware'=> ['auth']], function(){
     Route::resource('users','UsersController');
-    // Route::resource('contents','ContentsController',['only' => ['store','destroy',]]); ←メモ：あとでごちゃごちゃ編集するぞ！！
+    Route::resource('contents','ContentsController');
     Route::resource('comments','CommentsController',['only' => ['store']]);
+    Route::group(['prefix' => 'users/{id}'], function(){
+        Route::post('follow','UserFollowController@store')->name('user.follow');
+        Route::delete('unfollow','UserFollowController@destroy')->name('user.unfollow');
+        Route::get('followings','UserFollowController@followings')->name('users.followings');
+        Route::get('followers','UserFollowController@followers')->name('users.followers');
+    });
 });

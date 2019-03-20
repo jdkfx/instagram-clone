@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
 use App\Content;
+use App\Comment;
 use App\Userdetail;
 
 class ContentsController extends Controller
@@ -21,6 +23,12 @@ class ContentsController extends Controller
             $user = \Auth::user();
             $userdetail = Userdetail::find($user->id);
             $contents = $user->contents()->orderBy('created_at', 'desc')->get();
+            
+            if(isset($userdetail->profileImg)){
+                if (\Auth::id() === $user->id) {
+                $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
+                }
+            }
             
             $data = [
                 'user' => $user,
@@ -80,9 +88,11 @@ class ContentsController extends Controller
     public function show($id)
     {
         $content = Content::find($id);
+        $comments = Comment::where('content_id',$content->id)->get();
         
         return view('contents.show',[
             'content' => $content,
+            'comments' => $comments,
             ]);
     }
 

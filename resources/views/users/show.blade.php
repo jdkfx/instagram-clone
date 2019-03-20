@@ -10,7 +10,12 @@
         <p>自己紹介が設定されていません</p>
     @endif
     <h3>{{ $user->name }}</h3>
-    {!! link_to_route('users.edit','編集',['id' => $user->id]) !!}
-    {!! link_to_route('logout.get','ログアウト') !!}
+    
+    @if(Auth::id() == $user->id)
+        {!! link_to_route('users.edit','編集',['id' => $user->id]) !!}
+        {!! link_to_route('logout.get','ログアウト') !!}
+    @endif
+    
+    @include('user_follow.follow_button', ['user'=> $user])
 
 @endsection
