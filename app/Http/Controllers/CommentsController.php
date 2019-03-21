@@ -25,16 +25,4 @@ class CommentsController extends Controller
         
         return redirect()->back();
     }
-    
-    // public function show($id)//コメントとかのバグの原因はここだと思います
-    // {
-    //     $comment = Comment::find($id);
-    //     $content = Content::find($comment->content_id);
-    //     $user = User::find($comment->user_id);
-        
-    //     return view('contents.show',[
-    //         'content' => $content,
-    //         'user' => $user,
-    //         ]);
-    // }
 }

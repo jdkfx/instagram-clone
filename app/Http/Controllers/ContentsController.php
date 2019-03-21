@@ -21,22 +21,12 @@ class ContentsController extends Controller
         $data = [];
         if (\Auth::check()){
             $user = \Auth::user();
-            $userdetail = Userdetail::find($user->id);
-            $contents = $user->contents()->orderBy('created_at', 'desc')->get();
+            $contents = $user->feed_contents()->orderBy('created_at', 'desc')->get();
             
-            if(isset($userdetail->profileImg)){
-                if (\Auth::id() === $user->id) {
-                $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
-                }
-            }
-            
-            $data = [
-                'user' => $user,
-                'userdetail' => $userdetail,
+            return view('contents.index',[
                 'contents' => $contents,
-                ];
+                ]);
             
-            return view('contents.index',$data);    
         } else {
             return view('welcome');
         }

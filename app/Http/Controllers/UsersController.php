@@ -61,30 +61,20 @@ class UsersController extends Controller
     public function followings($id)
     {
         $user = User::find($id);
-        $followings = $user->followings();
+        $followings = $user->followings()->get();
         
-        $data = [
-            'user' => $user,
+        return view('users.followings',[
             'users' => $followings,
-            ];
-            
-        $data += $this->counts($user);
-            
-        return view('users.followings',$data);
+            ]);
     }
     
     public function followers($id)
     {
         $user = User::find($id);
-        $followers = $user->followers();
+        $followers = $user->followers()->get();
         
-        $data = [
-            'user' => $user,
+        return view('users.followers',[
             'users' => $followers,
-            ];
-        
-        $data += $this->counts($user);
-        
-        return view('users.followers',$data);
+            ]);
     }
 }

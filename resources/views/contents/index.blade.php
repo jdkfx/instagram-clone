@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="text-center">
         {!! link_to_route('contents.create','画像をアップロードする') !!}
     </div>
@@ -9,7 +10,17 @@
         
         @foreach($contents as $content)
         
-        <?php $user = $content->user; ?>
+        <?php
+        $user = App\User::find($content->user_id);
+        
+        $userdetail = App\Userdetail::find($content->user_id);
+        if(isset($userdetail->profileImg)){
+            if (\Auth::id() === $user->id) {
+            $userdetail->profileImg = App\Userdetail::latest('updated_at')->where('user_id',$user->id)->value('profileImg');
+            }
+        }
+        
+        ?>
         <li>
             <div class="well col-md-6 col-md-offset-3">
                 
