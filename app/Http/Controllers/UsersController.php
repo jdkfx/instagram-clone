@@ -17,8 +17,8 @@ class UsersController extends Controller
         
         if(isset($userdetail->profileText) && isset($userdetail->profileImg)){
             if (\Auth::id() === $user->id) {
-                $userdetail->profileText = Userdetail::latest('updated_at')->value('profileText');
-                $userdetail->profileImg = Userdetail::latest('updated_at')->value('profileImg');
+                $userdetail->profileText = Userdetail::latest('updated_at')->where('user_id',$user->id)->value('profileText');
+                $userdetail->profileImg = Userdetail::latest('updated_at')->where('user_id',$user->id)->value('profileImg');
             }
         }
     
