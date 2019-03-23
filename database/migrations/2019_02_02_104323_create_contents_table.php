@@ -18,6 +18,7 @@ class CreateContentsTable extends Migration
             $table->integer('user_id')->unsigned()->index();
             $table->string('toShareImg');
             $table->string('caption');
+            $table->string('tag');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');

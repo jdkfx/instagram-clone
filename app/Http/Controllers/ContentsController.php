@@ -57,6 +57,7 @@ class ContentsController extends Controller
         $this->validate($request,[
             'caption' => 'required|max:191',
             'toShareImg' => 'required|file|image',
+            'tag' => 'required|max:191'
             ]);
         
         $path = $request->toShareImg->store('contents');
@@ -64,6 +65,7 @@ class ContentsController extends Controller
         $request->user()->contents()->create([
             'toShareImg' => $path,
             'caption' => $request->caption,
+            'tag' => $request->tag,
             ]);
         
         return redirect('/');
@@ -116,6 +118,7 @@ class ContentsController extends Controller
         
         $content = Content::find($id);
         $content->caption = $request->caption;
+        $content->tag = $request->tag;
         $content->save();
         
         return redirect('/');
@@ -133,5 +136,14 @@ class ContentsController extends Controller
         $content->delete();
         
         return redirect('/');
+    }
+    
+    public function indexOfSearch(Request $tag)
+    {
+        $contents = Content::tagFilter(request('tag'))->get();
+        
+        return view('contents.indexOfSearch',[
+            'contents' => $contents,
+            ]);
     }
 }

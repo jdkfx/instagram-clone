@@ -21,6 +21,11 @@
                     {!! Form::textarea('caption',null,['class' => 'form-control']) !!}
                 </div>
                 
+                <div class="form-group">
+                    {!! Form::label('tag','タグ') !!}
+                    {!! Form::text('tag',null,['class' => 'form-control']) !!}
+                </div>
+                
                 {!! Form::submit('投稿') !!}
                 
             {!! Form::close() !!}

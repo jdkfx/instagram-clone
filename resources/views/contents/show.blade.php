@@ -8,12 +8,19 @@
         <div class="col-md-6 col-md-offset-3">
             <img src="/storage/{{ $content->toShareImg }}" alt="" width="400px">
             <p>{{ $content->caption }}</p>
+            <div>
+                @if(isset($content->tag))
+                    {!! link_to_route('contents.indexOfSearch', '#' . $content->tag ,['tag' => $content->tag]) !!}
+                @endif
+            </div>
             
+            @if(Auth::user()->id == $content->user_id)
             {!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}
-            
+        
             {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete' ]) !!}
                 {!! Form::submit('削除') !!}
             {!! Form::close() !!}
+            @endif
             
                 <div>
                     {!! Form::open(['route' => ['comments.store',$content->id]]) !!}
