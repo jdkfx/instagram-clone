@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="text-center">
-        {!! link_to_route('contents.create','画像をアップロードする') !!}
-    </div>
+    
+    <h1 class="text-center">
+        いいね！した投稿一覧
+    </h1>
     
     <ul>
         
@@ -25,44 +25,12 @@
             <div class="well col-md-6 col-md-offset-3">
                 
                 @if(isset($userdetail->profileImg))
-                <div class="content-top">
+                <div>
                     <p><img src="/storage/{{ $userdetail->profileImg }}" alt="" width="30px">{!! $user->name !!}</p>
-                    <div class="dropdown CSS-right">
-	                    <a data-toggle="dropdown" role="button" aria-expanded="false">
-	                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-	                    </a>
-                        	<ul class="dropdown-menu" role="menu">
-                        	    @if(Auth::user()->id == $content->user_id)
-                        	    <li role="presentation">{!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}</li>
-                        	    <li role="presentation">
-                        	        {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('削除',['style' => 'background-color: transparent;border: none;padding:0;']) !!}
-                                    {!! Form::close() !!}
-                        	    </li>
-                        	    @endif
-		                        <li role="presentation">{!! link_to_route('contents.show','詳細を見る',['id' => $content->id]) !!}</li>
-	                        </ul>
-                    </div>
                 </div>
                 @else
-                <div class="content-top">
+                <div>
                     <p>{!! $user->name !!}</p>
-                    <div class="dropdown CSS-right">
-	                    <a data-toggle="dropdown" role="button" aria-expanded="false">
-	                        <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-	                    </a>
-                        	<ul class="dropdown-menu" role="menu">
-                        	    @if(Auth::user()->id == $content->user_id)
-                        	    <li role="presentation">{!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}</li>
-                        	    <li role="presentation">
-                        	        {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete']) !!}
-                                        {!! Form::submit('削除',['style' => 'background-color: transparent;border: none;padding:0;']) !!}
-                                    {!! Form::close() !!}
-                        	    </li>
-                        	    @endif
-		                        <li role="presentation">{!! link_to_route('contents.show','詳細を見る',['id' => $content->id]) !!}</li>
-	                        </ul>
-                    </div>
                 </div>
                 @endif
                 
@@ -72,11 +40,9 @@
                 
                 <div>
                     <p>{!! $user->name !!}：{!! nl2br(e($content->caption)) !!}</p>
-                    <div>
-                        @if(isset($content->tag))
-                        {!! link_to_route('contents.indexOfSearch', '#' . $content->tag ,['tag' => $content->tag]) !!}
-                        @endif
-                    </div>
+                    @if(isset($content->tag))
+                    <p>#{{ $content->tag }}</p>
+                    @endif
                     
                     @include('user_favorite.favorite_button',['content' => $content])
                     
@@ -111,11 +77,21 @@
                     }
                     ?>
                 </div>
+                
+                {!! link_to_route('contents.show','詳細を見る',['id' => $content->id]) !!}
+                
+                @if(Auth::user()->id == $content->user_id)
+                {!! link_to_route('contents.edit','編集',['id' => $content->id]) !!}
+        
+                {!! Form::model($content, ['route' => ['contents.destroy',$content->id], 'method' => 'delete' ]) !!}
+                    {!! Form::submit('削除') !!}
+                {!! Form::close() !!}
+                @endif
             </div>
         </li>
         
         @endforeach
         
     </ul>
-    
+
 @endsection

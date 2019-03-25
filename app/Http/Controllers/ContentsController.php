@@ -18,7 +18,6 @@ class ContentsController extends Controller
      */
     public function index()
     {
-        $data = [];
         if (\Auth::check()){
             $user = \Auth::user();
             $contents = $user->feed_contents()->orderBy('created_at', 'desc')->get();

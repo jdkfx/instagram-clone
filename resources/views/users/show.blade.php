@@ -22,6 +22,7 @@
     
     {!! link_to_route('users.followings','フォロー中',['id' => $user->id]) !!}
     {!! link_to_route('users.followers','フォロワー',['id' => $user->id]) !!}
+    {!! link_to_route('users.favorites','いいね！した投稿',['id' => $user->id]) !!}
 
 
 @endsection

@@ -89,4 +89,38 @@ class User extends Authenticatable
         $follow_user_ids[] = $this->id;
         return Content::whereIn('user_id',$follow_user_ids);
     }
+    
+    public function favorites()
+    {
+        return $this->belongsToMany(Content::class,'content_favorite','user_id','content_id')->withTimestamps();
+    }
+    
+    public function favorite($contentId)
+    {
+        $exist = $this->is_favorite($contentId);
+        
+        if($exist){
+            return false;
+        }else{
+            $this->favorites()->attach($contentId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($contentId)
+    {
+        $exist = $this->is_favorite($contentId);
+        
+        if($exist){
+            $this->favorites()->detach($contentId);
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public function is_favorite($contentId)
+    {
+        return $this->favorites()->where('content_id',$contentId)->exists();
+    }
 }

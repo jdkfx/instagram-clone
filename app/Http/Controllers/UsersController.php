@@ -77,4 +77,14 @@ class UsersController extends Controller
             'users' => $followers,
             ]);
     }
+    
+    public function favorites($id)
+    {
+        $user = User::find($id);
+        $favorites = $user->favorites()->get();
+        
+        return view('users.favorites',[
+            'contents' => $favorites,
+            ]);
+    }
 }
