@@ -113,6 +113,7 @@ class ContentsController extends Controller
     {
         $this->validate($request,[
             'caption' => 'required|max:191',
+            'tag' => 'required|max:191',
             ]);
         
         $content = Content::find($id);
@@ -141,7 +142,7 @@ class ContentsController extends Controller
     {
         $contents = Content::tagFilter(request('tag'))->get();
         
-        return view('contents.indexOfSearch',[
+        return view('contents.index',[
             'contents' => $contents,
             ]);
     }

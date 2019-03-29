@@ -1,14 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
-    <div class="text-center">
-        <h1>新規登録</h1>
-    </div>
     
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-
+    <div class="jumbotron">
+        <div class="text-center">
+        
+        <p>新規登録</p>
+        
         {!! Form::open(['route'=>'signup.post']) !!}
         
             <div class="form-group">
@@ -31,7 +29,7 @@
                 {!! Form::password('password_confirmation',['class' => 'form-control']) !!}
             </div>
             
-            {!! Form::submit('登録',['class' => 'btn btn-primary btn-block']) !!}
+            {!! Form::submit('登録',['class' => 'btn btn-block']) !!}
             
         {!! Form::close() !!}
         

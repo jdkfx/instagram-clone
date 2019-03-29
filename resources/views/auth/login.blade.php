@@ -2,12 +2,10 @@
 
 @section('content')
 
-    <div class="text-center">
-        <h1>ログイン</h1>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+        <div class="text-center">
+            
+            <p>ログイン</p>
             
             {!! Form::open(['route' => 'login.post']) !!}
             
@@ -21,13 +19,11 @@
                     {!! Form::password('password',['class' => 'form-control']) !!}
                 </div>
                 
-                {!! Form::submit('ログイン',['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('ログイン',['class' => 'btn btn-block']) !!}
                 
             {!! Form::close() !!}
             
         </div>
     </div>
-    
-    <!--<div class="text-center"><p>新規登録はこちら☞{!! link_to_route('signup.get', '登録する') !!}</p></div>-->
     
 @endsection

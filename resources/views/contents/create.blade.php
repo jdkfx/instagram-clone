@@ -2,12 +2,10 @@
 
 @section('content')
     
-    <div class="text-center">
-        <h1>画像を投稿する</h1>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+        <div class="text-center">
+        
+        <h3>新規投稿</h3>
         
             {!! Form::model($content,['route' => 'contents.store', $content->toShareImg ,'files' => true]) !!}
                 
@@ -26,7 +24,7 @@
                     {!! Form::text('tag',null,['class' => 'form-control']) !!}
                 </div>
                 
-                {!! Form::submit('投稿') !!}
+                {!! Form::submit('投稿',['class' => 'btn btn-block']) !!}
                 
             {!! Form::close() !!}
         

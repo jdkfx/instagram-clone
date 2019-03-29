@@ -2,14 +2,12 @@
 
 @section('content')
     
-    <div class="text-center">
-        <h1>投稿の編集</h1>
-    </div>
-    
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+    <div class="jumbotron">
+        <div class="text-center">
 
-            <img src="/storage/{{ $content->toShareImg }}" alt="" width="400px">    
+            <h3>編集</h3>
+
+            <img src="/storage/{{ $content->toShareImg }}" alt="">    
             {!! Form::model($content, ['route' => ['contents.update',$content->id], 'method' => 'put']) !!}
                 
                 <div class="form-group">
@@ -22,7 +20,7 @@
                     {!! Form::text('tag',null,['class' => 'form-control']) !!}
                 </div>
                 
-                {!! Form::submit('更新') !!}
+                {!! Form::submit('更新',['class' => 'btn btn-block']) !!}
                 
             {!! Form::close() !!}
             

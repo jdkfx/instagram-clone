@@ -1,12 +1,146 @@
 @charset "UTF-8";
 
+/*全体のデザイン*/
+
+body {
+    background-color:#f2f2f2;
+    font-family:'sans-serif';
+    padding-top:70px;
+}
+
 ul {
     list-style-type: none;
 }
 
-.CSS-right {
-    float:right;
+/*ナビバーのデザイン*/
+
+.navbar {
+    background-color:#ffffff;
+    font-family:'Century Gothic';
 }
+
+/*jumbotronのなかのデザイン*/
+
+.jumbotron {
+    background-color:#ffffff;
+    margin:0 auto;
+    width:500px;
+    border:solid 1px #999999;
+}
+
+.jumbotron>.text-center>p{
+    font-size:24px;
+    font-family:'Century Gothic';
+}
+
+.jumbotron>.text-center>.btn{
+    background-color:#00a0ff;
+    color:white;
+}
+
+.jumbotron>.text-center>img {
+    margin-bottom:20px;
+    border-radius:10px;
+    max-width:100%;
+    height:auto;
+}
+
+.jumbotron>.text-center>form>.btn {
+    background-color:#00a0ff;
+    color:white;
+}
+
+/*indexページのデザイン*/
+
+.wrapper {
+    background-color:#ffffff;
+    width:500px;
+    border:solid 1px #999999;
+    border-radius:10px;
+    margin:0 auto;
+    margin-bottom:20px;
+}
+
+.wrapper>.content-top {
+    vertical-align:middle;
+    margin-top:5px;
+    height:43px;
+    line-height:43px;
+}
+
+.wrapper>.content-top>img{
+    width:40px;
+    margin-left:5px;
+    margin-bottom:5px;
+    float:left;
+    border-radius:10px;
+}
+
+.wrapper>.content-top>p {
+    float:left;
+    font-size:18px;
+    margin-left:10px;
+}
+
+.wrapper>.content-top>.dropdown {
+    float:right;
+    margin-right:30px;
+}
+
+.wrapper>.content-top>.dropdown>a {
+    color:#999999;
+}
+
+.wrapper>.content-body>img {
+    max-width:100%;
+    height:auto;
+    border-top:solid 1px #999999;
+    border-bottom:solid 1px #999999;
+}
+
+.wrapper>.content-body>p {
+    margin-top:10px;
+    margin-left:10px;
+}
+
+.wrapper>.content-body>form>.btn {
+    background-color:#00a0ff;
+    color:white;
+    margin-top:10px;
+    margin-left:10px;
+}
+
+.wrapper>.content-body>.tag {
+    margin-top:10px;
+    margin-left:10px;
+}
+
+.wrapper>.content-body>.posted-at {
+    margin-top:10px;
+    margin-left:10px;
+    margin-bottom:10px;
+}
+
+
+/*新規投稿ページのデザイン*/
+
+.create-page {
+    margin:0 auto;
+    width:500px;
+    border:solid 1px #999999;
+    padding-top: 22px;
+    padding-bottom:30px;
+}
+
+.create-page>.text-center {
+    margin:0 auto;
+}
+
+.create-page>.text-center>p {
+    font-size:20px;
+}
+
+/*ドロップダウンのデザイン*/
 
 .dropdown-menu>li>form {
     display: block;
